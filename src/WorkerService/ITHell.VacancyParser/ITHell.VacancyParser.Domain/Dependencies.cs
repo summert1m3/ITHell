@@ -13,9 +13,9 @@ public static class Dependencies
         var jobSiteLink = configuration["JobSiteLink"];
         Guard.Against.NullOrWhiteSpace(jobSiteLink);
         
-        services.AddScoped<IVacancyCardParser>(
+        services.AddSingleton<IVacancyCardParser>(
             provider => new VacancyCardParser(jobSiteLink));
 
-        services.AddScoped<IVacancyPageParser, VacancyPageParser>();
+        services.AddSingleton<IVacancyPageParser, VacancyPageParser>();
     }
 }

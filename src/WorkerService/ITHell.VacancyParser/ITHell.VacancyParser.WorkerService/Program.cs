@@ -7,10 +7,10 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         var configuration = hostContext.Configuration;
         
-        services.AddHostedService<VacancyParser>();
-        
         services.AddDomain(configuration);
         services.AddApplication(configuration);
+        
+        services.AddHostedService<VacancyParser>();
     })
     .Build();
 
