@@ -11,5 +11,5 @@ public interface IHtmlParser
     public VacancyPage ParseVacancyPage(
         IDocument doc, VacancyCard vacancyCard);
     public List<ResumeCard> ParseResumeCards(IDocument doc);
-    public ResumePage ParseResumePage(IDocument doc);
+    public ResumePage ParseResumePage(IDocument doc, ResumeCard resumeCard);
 }

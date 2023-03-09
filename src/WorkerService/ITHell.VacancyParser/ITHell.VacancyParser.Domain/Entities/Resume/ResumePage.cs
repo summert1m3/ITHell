@@ -5,7 +5,7 @@ public class ResumePage
     /// <summary>
     /// Id резюме из ссылки
     /// </summary>
-    public required int ResumeId { get; init; }
+    public required Guid ResumeId { get; init; }
     public required string PageLink { get; init; }
     public required string Title { get; init; }
     public int? Age { get; init; }

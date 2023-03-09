@@ -39,11 +39,11 @@ public class DefaultHtmlParser : IHtmlParser
 
     public List<ResumeCard> ParseResumeCards(IDocument doc)
     {
-        throw new NotImplementedException();
+        return _resumeCardParser.ParseResumeCardsFromDom(doc);
     }
 
-    public ResumePage ParseResumePage(IDocument doc)
+    public ResumePage ParseResumePage(IDocument doc, ResumeCard resumeCard)
     {
-        throw new NotImplementedException();
+        return _resumePageParser.ParseResumePageFromDom(doc, resumeCard);
     }
 }
