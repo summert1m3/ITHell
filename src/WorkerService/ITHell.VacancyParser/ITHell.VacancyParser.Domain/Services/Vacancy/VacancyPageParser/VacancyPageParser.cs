@@ -5,11 +5,11 @@ using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage.ValueObjects;
 
-namespace ITHell.VacancyParser.Domain.Services.VacancyPageParser;
+namespace ITHell.VacancyParser.Domain.Services.Vacancy.VacancyPageParser;
 
 public class VacancyPageParser : IVacancyPageParser
 {
-    public VacancyPage ParseVacancyPageFromHtmlDoc(IDocument doc, VacancyCard vacancyCard)
+    public VacancyPage ParseVacancyPageFromDom(IDocument doc, VacancyCard vacancyCard)
     {
         var mainContent = doc.QuerySelector("div.main-content");
         Guard.Against.Null(mainContent);

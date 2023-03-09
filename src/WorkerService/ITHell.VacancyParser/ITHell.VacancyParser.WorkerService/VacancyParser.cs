@@ -30,7 +30,7 @@ public class VacancyParser : BackgroundService
         _regionalJobSiteLink = configuration["RegionalJobSiteLink"];
         Guard.Against.NullOrWhiteSpace(_regionalJobSiteLink);
 
-        _parserStartLink = configuration["ParserStartLink"];
+        _parserStartLink = configuration["VacancyParserStartLink"];
         Guard.Against.NullOrWhiteSpace(_parserStartLink);
     }
 

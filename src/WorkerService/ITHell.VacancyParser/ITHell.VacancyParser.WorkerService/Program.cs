@@ -11,6 +11,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddApplication(configuration);
         
         services.AddHostedService<VacancyParser>();
+        services.AddHostedService<ResumeParser>();
     })
     .Build();
 

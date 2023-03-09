@@ -4,7 +4,7 @@ using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard.ValueObjects;
 
-namespace ITHell.VacancyParser.Domain.Services.VacancyCardParser;
+namespace ITHell.VacancyParser.Domain.Services.Vacancy.VacancyCardParser;
 
 public class VacancyCardParser : IVacancyCardParser
 {
@@ -15,7 +15,7 @@ public class VacancyCardParser : IVacancyCardParser
         _jobSiteLink = jobSiteLink;
     }
     
-    public List<VacancyCard> ParseVacancyCardsFromHtmlDoc(IDocument doc)
+    public List<VacancyCard> ParseVacancyCardsFromDom(IDocument doc)
     {
         var vacancyCardEls = doc.QuerySelectorAll("div.serp-item");
 
