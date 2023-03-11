@@ -7,5 +7,5 @@ public class ResumeCard
     /// </summary>
     public required Guid ResumeId { get; init; }
     public required string ResumePageLink { get; init; }
-    public required List<string> Labels { get; init; }
+    public required EmployeeStatus? EmployeeStatus { get; init; }
 }

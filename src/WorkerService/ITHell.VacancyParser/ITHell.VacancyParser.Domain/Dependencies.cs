@@ -1,4 +1,6 @@
 using Ardalis.GuardClauses;
+using ITHell.VacancyParser.Domain.Services.Resume.ResumeCardParser;
+using ITHell.VacancyParser.Domain.Services.Resume.ResumePageParser;
 using ITHell.VacancyParser.Domain.Services.Vacancy.VacancyCardParser;
 using ITHell.VacancyParser.Domain.Services.Vacancy.VacancyPageParser;
 using Microsoft.Extensions.Configuration;
@@ -17,5 +19,10 @@ public static class Dependencies
             provider => new VacancyCardParser(jobSiteLink));
 
         services.AddSingleton<IVacancyPageParser, VacancyPageParser>();
+        
+        services.AddSingleton<IResumeCardParser>(
+            provider => new ResumeCardParser(jobSiteLink));
+
+        services.AddSingleton<IResumePageParser, ResumePageParser>();
     }
 }

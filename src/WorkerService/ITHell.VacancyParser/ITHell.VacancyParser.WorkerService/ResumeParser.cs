@@ -124,12 +124,9 @@ public class ResumeParser : BackgroundService
     {
         Console.WriteLine($"ResumeId: {resumeCard.ResumeId}");
         Console.WriteLine($"ResumePageLink: {resumeCard.ResumePageLink}");
-        Console.WriteLine($"Labels:");
-
-        foreach (var labels in resumeCard.Labels)
-        {
-            Console.WriteLine(labels);
-        }
+        Console.WriteLine($"Label:");
+        
+        Console.WriteLine(resumeCard.EmployeeStatus);
 
         Console.WriteLine();
         Console.WriteLine("---------------");
