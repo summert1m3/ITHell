@@ -4,6 +4,7 @@ using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Application.Services.Clients;
 using ITHell.VacancyParser.Application.Services.Parsers;
 using ITHell.VacancyParser.Domain.Entities.Resume;
+using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace ITHell.VacancyParser.WorkerService;

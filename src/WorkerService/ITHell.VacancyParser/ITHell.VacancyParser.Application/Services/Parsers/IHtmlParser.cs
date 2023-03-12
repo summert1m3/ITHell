@@ -1,5 +1,6 @@
 using AngleSharp.Dom;
 using ITHell.VacancyParser.Domain.Entities.Resume;
+using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage;
 

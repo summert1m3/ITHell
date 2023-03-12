@@ -11,5 +11,7 @@ public enum EmployeeStatus
     [Description("Рассматривает предложения")]
     ConsidersOffers,
     [Description("Предложили работу, решает")]
-    ReceivedOffer
+    ReceivedOffer,
+    [Description("Вышел на новое место")]
+    FoundJob
 }

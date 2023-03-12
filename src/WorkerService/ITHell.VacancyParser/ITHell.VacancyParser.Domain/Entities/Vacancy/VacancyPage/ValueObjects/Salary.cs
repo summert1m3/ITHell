@@ -1,3 +1,5 @@
+using ITHell.VacancyParser.Domain.Common;
+
 namespace ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage.ValueObjects;
 
 public class Salary

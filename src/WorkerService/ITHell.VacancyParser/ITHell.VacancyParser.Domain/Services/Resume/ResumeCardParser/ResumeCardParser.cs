@@ -54,7 +54,7 @@ public class ResumeCardParser : IResumeCardParser
 
             if (label is not null)
             {
-                employeeStatus = EnumParser.ParseEnum<EmployeeStatus>(label);
+                employeeStatus = EnumParser.ParseEnumDescription<EmployeeStatus>(label);
             }
             
             resumeCards.Add(

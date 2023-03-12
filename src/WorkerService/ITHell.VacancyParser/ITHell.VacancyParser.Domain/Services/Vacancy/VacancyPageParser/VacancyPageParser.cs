@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using AngleSharp.Dom;
 using Ardalis.GuardClauses;
+using ITHell.VacancyParser.Domain.Common;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage.ValueObjects;

@@ -5,7 +5,7 @@ namespace ITHell.VacancyParser.Domain.Common;
 
 public static class EnumParser
 {
-    public static T ParseEnum<T>(string description) where T : Enum
+    public static T ParseEnumDescription<T>(string description) where T : Enum
     {
         foreach (var value in Enum.GetValues(typeof(T)).Cast<T>())
         {
@@ -14,6 +14,32 @@ public static class EnumParser
             if (attribute != null && attribute.Description == description)
             {
                 return value;
+            }
+        }
+
+        throw new ArgumentException($"Invalid value '{description}' for enum type {typeof(T).Name}");
+    }
+    
+    public static T ParseEnumMultipleDescription<T>(string description) where T : struct, Enum
+    {
+        foreach (var value in Enum.GetValues(typeof(T)).Cast<T>())
+        {
+            var field = typeof(T).GetField(value.ToString());
+            var attribute = field.GetCustomAttribute<MultipleDescriptionAttribute>();
+            
+            if (attribute is not null)
+            {
+                if (attribute.Values.Contains(description))
+                {
+                    return value;
+                }
+            }
+            else
+            {
+                if (Enum.TryParse<T>(description, out _))
+                {
+                    return value;
+                }
             }
         }
 
