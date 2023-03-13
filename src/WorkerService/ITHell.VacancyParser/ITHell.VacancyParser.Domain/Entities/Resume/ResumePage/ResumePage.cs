@@ -33,7 +33,7 @@ public class ResumePage
     /// <summary>
     /// Предполагаемая зарплата
     /// </summary>
-    public required Salary Salary { get; init; }
+    public Salary? Salary { get; init; }
     public required string Title { get; init; }
     
     /// <summary>
@@ -62,10 +62,10 @@ public class ResumePage
     /// </summary>
     public required List<LanguageKnowledge> LanguagesKnowledge { get; init; }
     
-    public required Country Citizenship { get; set; }
+    public Country? Citizenship { get; set; }
     
     /// <summary>
     /// Разрешение на работу
     /// </summary>
-    public Country WorkPermit { get; set; }
+    public Country? WorkPermit { get; set; }
 }

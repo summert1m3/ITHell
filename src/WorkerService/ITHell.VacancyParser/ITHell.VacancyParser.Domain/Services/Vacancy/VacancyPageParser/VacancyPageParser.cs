@@ -238,7 +238,6 @@ public class VacancyPageParser : IVacancyPageParser
     /// <summary>
     /// Ключевые навыки
     /// </summary>
-    /// <returns></returns>
     private static List<string> ParseTagList(IElement main)
     {
         var tagList = new List<string>();
@@ -282,7 +281,7 @@ public class VacancyPageParser : IVacancyPageParser
     {
         string[] words = input.Split(' ');
         string dateString = words[2].Replace('\u00A0', ' ');
-        ;
+        
         DateTime date = DateTime.ParseExact(dateString, "d MMMM yyyy",
             System.Globalization.CultureInfo.GetCultureInfo("ru-RU"));
 

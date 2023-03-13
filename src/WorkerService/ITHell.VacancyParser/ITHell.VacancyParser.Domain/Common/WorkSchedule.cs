@@ -5,18 +5,18 @@ namespace ITHell.VacancyParser.Domain.Common;
 /// </summary>
 public enum WorkSchedule
 {
-    [MultipleDescription("Full day", "Полный день")]
+    [MultipleDescription("full day", "полный день")]
     FullDay,
     
-    [MultipleDescription("Shift schedule", "Сменный график")]
+    [MultipleDescription("shift schedule", "сменный график")]
     ShiftSchedule,
     
-    [MultipleDescription("Flexible schedule", "Гибкий график")]
+    [MultipleDescription("flexible schedule", "гибкий график")]
     FlexibleSchedule,
     
-    [MultipleDescription("Remote working", "Удаленная работа")]
+    [MultipleDescription("remote working", "удаленная работа")]
     RemoteWorking,
     
-    [MultipleDescription("Rotation based work", "Вахтовый метод")]
+    [MultipleDescription("rotation based work", "вахтовый метод")]
     RotationBasedWork,
 }

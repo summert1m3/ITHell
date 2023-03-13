@@ -5,18 +5,18 @@ namespace ITHell.VacancyParser.Domain.Common;
 /// </summary>
 public enum Employment
 {
-    [MultipleDescription("Full time", "Полная занятость")]
+    [MultipleDescription("full time", "полная занятость")]
     FullTime,
     
-    [MultipleDescription("Part time", "Частичная занятость")]
+    [MultipleDescription("part time", "частичная занятость")]
     PartTime,
     
-    [MultipleDescription("Project work", "Проектная работа")]
+    [MultipleDescription("project work", "проектная работа")]
     ProjectWork,
     
-    [MultipleDescription("Project work", "Волонтерство")]
+    [MultipleDescription("volunteering", "волонтерство")]
     Volunteering,
     
-    [MultipleDescription("Work placement", "Стажировка")]
+    [MultipleDescription("work placement", "стажировка")]
     WorkPlacement
 }
