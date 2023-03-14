@@ -2,27 +2,27 @@ namespace ITHell.VacancyParser.Domain.Common;
 
 public enum Education
 {
-    [MultipleDescription("Secondary", "Среднее")]
+    [MultipleDescription("Secondary", "Образование")]
     Average,
     
-    [MultipleDescription("Vocational secondary", "Среднее специальное")]
+    [MultipleDescription("Vocational secondary", "Среднее специальное образование")]
     SecondarySpecial,
     
-    [MultipleDescription("Incomplete higher education", "Неоконченное высшее")]
+    [MultipleDescription("Incomplete higher education", "Неоконченное высшее образование")]
     UnfinishedHigherEducation,
     
-    [MultipleDescription("Higher", "Высшее")]
+    [MultipleDescription("Higher", "Высшее образование")]
     Higher,
     
-    [MultipleDescription("Bachelor", "Бакалавр")]
+    [MultipleDescription("Bachelor", "Высшее образование (Бакалавр)")]
     Bachelor,
     
-    [MultipleDescription("Master", "Магистр")]
+    [MultipleDescription("Master", "Высшее образование (Магистр)")]
     Master,
     
-    [MultipleDescription("PhD", "Кандидат наук")]
+    [MultipleDescription("PhD", "Высшее образование (Кандидат наук)")]
     PhD,
     
-    [MultipleDescription("Doctor of Sciences", "Доктор наук")]
+    [MultipleDescription("Doctor of Sciences", "Высшее образование (Доктор наук)")]
     DoctorOfSciences
 }

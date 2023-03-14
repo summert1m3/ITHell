@@ -103,7 +103,10 @@ public class ResumePageParser : IResumePageParser
     private static List<WorkSchedule> ParseWorkSchedules(IElement element)
     {
         var workSchedulesRaw = element.TextContent;
-        var workSchedulesClear = workSchedulesRaw.Remove(0, 11);
+        
+        var workSchedulesClear = workSchedulesRaw.Substring(
+            workSchedulesRaw.IndexOf(": ", StringComparison.Ordinal) + 2);
+        
         var workSchedulesStr = workSchedulesClear.Split(", ");
 
         List<WorkSchedule> workSchedules = new();
@@ -127,7 +130,7 @@ public class ResumePageParser : IResumePageParser
     private static Education? ParseEducation(IElement mainContent)
     {
         var educationStr = mainContent
-            .QuerySelector("div[data-qa=\"resume-block-education\"]")?
+            .QuerySelector("div[data-qa=\"resume-block-education\"] span.resume-block__title-text.resume-block__title-text_sub")?
             .TextContent;
 
         Education? education = null;
@@ -144,14 +147,14 @@ public class ResumePageParser : IResumePageParser
     {
         var experienceStr = mainContent
             .QuerySelector(
-                "div[data-qa=\"resume-block-experience\"] span.resume-block__title-text resume-block__title-text_sub")?
+                "div[data-qa=\"resume-block-experience\"] span.resume-block__title-text.resume-block__title-text_sub")?
             .TextContent;
 
         TimeSpan? experience = null;
 
         if (experienceStr is not null)
         {
-            var experienceStrParsed = experienceStr.Remove(0, 12);
+            var experienceStrParsed = experienceStr.Replace('\u00A0', ' ');
 
             experience = ParseTimeSpanFromStr(experienceStrParsed);
         }
@@ -184,6 +187,10 @@ public class ResumePageParser : IResumePageParser
             {
                 salaryCurrency = Currency.EUR;
             }
+            else if (salaryStr.Contains("KZT"))
+            {
+                salaryCurrency = Currency.KZT;
+            }
 
             Guard.Against.Null(salaryCurrency);
 
@@ -208,7 +215,8 @@ public class ResumePageParser : IResumePageParser
 
         if (workPermitRaw is null) return workPermit;
         
-        var workPermitParsed = workPermitRaw.Substring(workPermitRaw.IndexOf(": ") + 2);
+        var workPermitParsed = workPermitRaw.Substring(
+            workPermitRaw.IndexOf(": ", StringComparison.Ordinal) + 2);
         
         try
         {
@@ -341,7 +349,7 @@ public class ResumePageParser : IResumePageParser
         int months = 0;
         string[] parts = timeString.Split(' ');
 
-        for (int i = 0; i < parts.Length; i += 2)
+        for (int i = 2; i < parts.Length; i += 2)
         {
             int value = int.Parse(parts[i]);
             switch (parts[i + 1])
@@ -368,7 +376,7 @@ public class ResumePageParser : IResumePageParser
         return new TimeSpan(years * 365 + months * 30, 0, 0, 0);
     }
 
-    private (Gender Gender, int Age, DateTime BirthDay, bool HasPhoto)
+    private (Gender Gender, int? Age, DateTime? BirthDay, bool HasPhoto)
         ParseHeader(IElement mainContent)
     {
         var header = mainContent.QuerySelector(
@@ -383,19 +391,26 @@ public class ResumePageParser : IResumePageParser
 
         var ageStr = header.QuerySelector("span[data-qa=\"resume-personal-age\"]")?
             .TextContent;
-        Guard.Against.NullOrWhiteSpace(ageStr);
-
-        var age = int.Parse(new string(ageStr.Where(char.IsDigit).ToArray()));
-
+        
+        int? age = null;
+        if (!string.IsNullOrWhiteSpace(ageStr))
+        {
+            age = int.Parse(new string(ageStr.Where(char.IsDigit).ToArray()));
+        }
+        
         var birthDayStr = header
             .QuerySelector("span[data-qa=\"resume-personal-birthday\"]")?
             .TextContent
             .Replace('\u00A0', ' ');
-        Guard.Against.NullOrWhiteSpace(birthDayStr);
 
-        var birthDay = ParseBirthDay(birthDayStr);
+        DateTime? birthDay = null;
+        
+        if (!string.IsNullOrWhiteSpace(birthDayStr))
+        {
+            birthDay = ParseBirthDay(birthDayStr);
+        }
 
-        var photoEl = header.QuerySelector("div.resume-header-photo-desktop");
+        var photoEl = header.QuerySelector("div[data-qa=\"resume-photo-forbidden\"]");
 
         bool hasPhoto;
 

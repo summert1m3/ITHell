@@ -50,7 +50,28 @@ public class ResumeParser : BackgroundService
         }
     }
 
-    async Task ParseResumeCards(string pageLink)
+    private async Task Test()
+    {
+        var config = Configuration.Default.WithDefaultLoader();
+        using var context = BrowsingContext.New(config);
+
+        var resumePageHtml = File.ReadAllText("");
+            
+        using var resumePageDoc
+            = await context.OpenAsync(req => req.Content(resumePageHtml));
+            
+        await resumePageDoc.WaitForReadyAsync();
+            
+        var resumePage
+            = _htmlParser.ParseResumePage(resumePageDoc, new ResumeCard()
+            {
+                EmployeeStatus = EmployeeStatus.Active,
+                ResumeId = Guid.NewGuid(),
+                ResumePageLink = ""
+            });
+    }
+
+    private async Task ParseResumeCards(string pageLink)
     {
         var pageNumber = 2;
 
@@ -76,7 +97,7 @@ public class ResumeParser : BackgroundService
             {
                 DisplayResumeCard(resumeCard);
 
-                await Task.Delay(new TimeSpan(0, 0, Random.Shared.Next(10, 20)));
+                await Task.Delay(new TimeSpan(0, 0, Random.Shared.Next(5, 10)));
 
                 var resumePageHtml = await _flareSolverrHttpClient.Get(resumeCard.ResumePageLink);
 
@@ -113,15 +134,45 @@ public class ResumeParser : BackgroundService
         Console.WriteLine($"All resume cards: {allResumeCards.Count}");
     }
 
-    void DisplayResumePage(ResumePage resume)
+    private static void DisplayResumePage(ResumePage resume)
     {
-        Console.WriteLine($"ResumeId: {resume.ResumeId}");
-        Console.WriteLine($"PageLink: {resume.PageLink}");
-        Console.WriteLine($"Title: {resume.Title}");
-        Console.WriteLine($"Age: {resume.Age}");
+        Console.WriteLine($"{resume.ResumeId}");
+        Console.WriteLine($"{resume.PageLink}");
+        Console.WriteLine($"{resume.EmployeeStatus}");
+        Console.WriteLine($"{resume.Gender}");
+        
+        Console.WriteLine($"{resume.Age}");
+        Console.WriteLine($"{resume.BirthDate}");
+        Console.WriteLine($"{resume.HasPicture}");
+        Console.WriteLine($"{resume.Salary?.EstimatedSalary}");
+        
+        Console.WriteLine($"{resume.Salary?.SalaryCurrency}");
+        Console.WriteLine($"{resume.Title}");
+
+        Console.WriteLine();
+        
+        foreach (var employment in resume.Employments)
+        {
+            Console.WriteLine(employment);
+        }
+
+        Console.WriteLine();
+        
+        foreach (var workSchedule in resume.WorkSchedules)
+        {
+            Console.WriteLine(workSchedule);
+        }
+
+        Console.WriteLine();
+        
+        Console.WriteLine($"{resume.Experience}");
+        Console.WriteLine($"{resume.Education}");
+        
+        Console.WriteLine($"{resume.Citizenship}");
+        Console.WriteLine($"{resume.WorkPermit}");
     }
 
-    private void DisplayResumeCard(ResumeCard resumeCard)
+    private static void DisplayResumeCard(ResumeCard resumeCard)
     {
         Console.WriteLine($"ResumeId: {resumeCard.ResumeId}");
         Console.WriteLine($"ResumePageLink: {resumeCard.ResumePageLink}");

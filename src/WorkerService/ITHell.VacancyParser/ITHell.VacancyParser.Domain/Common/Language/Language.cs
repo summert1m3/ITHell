@@ -43,5 +43,7 @@ public enum Language
     [MultipleDescription("Macedonian", "Македонский")]
     Macedonian,
     [MultipleDescription("Albanian", "Албанский")]
-    Albanian
+    Albanian,
+    [MultipleDescription("Kyrgyz", "Кыргызский")]
+    Kyrgyz
 }

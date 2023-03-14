@@ -134,6 +134,10 @@ public class VacancyPageParser : IVacancyPageParser
             {
                 salaryCurrency = Currency.EUR;
             }
+            else if(salaryIntervalNoWhiteSpaces.Contains("KZT"))
+            {
+                salaryCurrency = Currency.KZT;
+            }
         }
 
         int? experienceFrom = null;
