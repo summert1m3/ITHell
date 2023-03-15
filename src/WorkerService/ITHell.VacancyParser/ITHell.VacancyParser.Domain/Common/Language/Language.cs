@@ -2,6 +2,7 @@ namespace ITHell.VacancyParser.Domain.Common.Language;
 
 public enum Language
 {
+    Unknown,
     [MultipleDescription("Russian", "Русский")]
     Russian,
     [MultipleDescription("English", "Английский")]
@@ -45,5 +46,11 @@ public enum Language
     [MultipleDescription("Albanian", "Албанский")]
     Albanian,
     [MultipleDescription("Kyrgyz", "Кыргызский")]
-    Kyrgyz
+    Kyrgyz,
+    [MultipleDescription("Uzbek", "Узбекский")]
+    Uzbek,
+    [MultipleDescription("Turkmen", "Туркменский")]
+    Turkmen,
+    [MultipleDescription("Azerbaijanian", "Азербайджанский")]
+    Azerbaijanian
 }
