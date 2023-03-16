@@ -1,6 +1,6 @@
 namespace ITHell.VacancyParser.Domain.Entities.Resume;
 
-public class ResumeCard
+public record ResumeCard
 {
     /// <summary>
     /// Id резюме из ссылки

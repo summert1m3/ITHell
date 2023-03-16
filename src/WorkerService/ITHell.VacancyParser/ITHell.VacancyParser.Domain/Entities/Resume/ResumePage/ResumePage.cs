@@ -3,7 +3,7 @@ using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage.ValueObjects;
 
 namespace ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
 
-public class ResumePage
+public record ResumePage
 {
     /// <summary>
     /// Id резюме из ссылки

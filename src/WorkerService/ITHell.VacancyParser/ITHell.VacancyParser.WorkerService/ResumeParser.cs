@@ -73,7 +73,7 @@ public class ResumeParser : BackgroundService
 
     private async Task ParseResumeCards(string pageLink)
     {
-        var pageNumber = 2;
+        var pageNumber = 0;
 
         List<ResumeCard> allResumeCards = new();
 
@@ -136,52 +136,15 @@ public class ResumeParser : BackgroundService
 
     private static void DisplayResumePage(ResumePage resume)
     {
-        Console.WriteLine($"{resume.ResumeId}");
-        Console.WriteLine($"{resume.PageLink}");
-        Console.WriteLine($"{resume.EmployeeStatus}");
-        Console.WriteLine($"{resume.Gender}");
-        
-        Console.WriteLine($"{resume.Age}");
-        Console.WriteLine($"{resume.BirthDate}");
-        Console.WriteLine($"{resume.HasPicture}");
-        Console.WriteLine($"{resume.Salary?.EstimatedSalary}");
-        
-        Console.WriteLine($"{resume.Salary?.SalaryCurrency}");
-        Console.WriteLine($"{resume.Title}");
-
         Console.WriteLine();
-        
-        foreach (var employment in resume.Employments)
-        {
-            Console.WriteLine(employment);
-        }
-
+        Console.WriteLine(resume);
         Console.WriteLine();
-        
-        foreach (var workSchedule in resume.WorkSchedules)
-        {
-            Console.WriteLine(workSchedule);
-        }
-
-        Console.WriteLine();
-        
-        Console.WriteLine($"{resume.Experience}");
-        Console.WriteLine($"{resume.Education}");
-        
-        Console.WriteLine($"{resume.Citizenship}");
-        Console.WriteLine($"{resume.WorkPermit}");
     }
 
     private static void DisplayResumeCard(ResumeCard resumeCard)
     {
-        Console.WriteLine($"ResumeId: {resumeCard.ResumeId}");
-        Console.WriteLine($"ResumePageLink: {resumeCard.ResumePageLink}");
-        Console.WriteLine($"Label:");
-        
-        Console.WriteLine(resumeCard.EmployeeStatus);
-
         Console.WriteLine();
-        Console.WriteLine("---------------");
+        Console.WriteLine(resumeCard);
         Console.WriteLine();
     }
 }

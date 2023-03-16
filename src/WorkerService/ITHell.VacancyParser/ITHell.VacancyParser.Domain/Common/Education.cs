@@ -2,7 +2,7 @@ namespace ITHell.VacancyParser.Domain.Common;
 
 public enum Education
 {
-    [MultipleDescription("Secondary education", "Образование")]
+    [MultipleDescription("Secondary education", "Образование", "Среднее образование")]
     Average,
     
     [MultipleDescription("Secondary special education", "Среднее специальное образование")]
