@@ -19,7 +19,7 @@ public class ResumePage : BaseEntity
     /// Статус поиска работы
     /// </summary>
     public required EmployeeStatus? EmployeeStatus { get; init; }
-    
+
     public Gender? Gender { get; init; }
     public int? Age { get; init; }
     
@@ -55,6 +55,11 @@ public class ResumePage : BaseEntity
     /// </summary>
     public required List<string> TagList { get; init; }
     
+    /// <summary>
+    /// Знание языков программирования
+    /// </summary>
+    public required List<ProgrammingLanguage> ProgrammingLanguagesKnowledge { get; init; }
+
     public Education? Education { get; init; }
 
     /// <summary>
