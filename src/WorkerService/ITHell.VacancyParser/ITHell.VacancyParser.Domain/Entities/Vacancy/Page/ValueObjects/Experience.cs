@@ -1,4 +1,4 @@
-namespace ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage.ValueObjects;
+namespace ITHell.VacancyParser.Domain.Entities.Vacancy.Page.ValueObjects;
 
 public class Experience
 {

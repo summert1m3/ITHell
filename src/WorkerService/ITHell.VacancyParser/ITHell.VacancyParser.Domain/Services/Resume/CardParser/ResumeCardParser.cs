@@ -4,7 +4,7 @@ using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Domain.Common;
 using ITHell.VacancyParser.Domain.Entities.Resume;
 
-namespace ITHell.VacancyParser.Domain.Services.Resume.ResumeCardParser;
+namespace ITHell.VacancyParser.Domain.Services.Resume.CardParser;
 
 public class ResumeCardParser : IResumeCardParser
 {

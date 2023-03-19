@@ -3,8 +3,8 @@ using AngleSharp.Dom;
 using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Application.Services.Clients;
 using ITHell.VacancyParser.Application.Services.Parsers;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Card;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Page;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace ITHell.VacancyParser.WorkerService;

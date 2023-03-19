@@ -1,8 +1,8 @@
 using AngleSharp.Dom;
 using ITHell.VacancyParser.Domain.Entities.Resume;
-using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage;
+using ITHell.VacancyParser.Domain.Entities.Resume.Page;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Card;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Page;
 
 namespace ITHell.VacancyParser.Application.Services.Parsers;
 

@@ -1,6 +1,4 @@
-using System.ComponentModel;
-
-namespace ITHell.VacancyParser.Domain.Common;
+namespace ITHell.VacancyParser.Domain.Common.Attributes;
 
 [AttributeUsage(AttributeTargets.All)]
 public class MultipleDescriptionAttribute : Attribute

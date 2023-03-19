@@ -1,3 +1,5 @@
+using ITHell.VacancyParser.Domain.Common.Attributes;
+
 namespace ITHell.VacancyParser.Domain.Common.Language;
 
 /// <summary>

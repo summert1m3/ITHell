@@ -1,8 +1,8 @@
 using AngleSharp.Dom;
 using ITHell.VacancyParser.Domain.Entities.Resume;
-using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
+using ITHell.VacancyParser.Domain.Entities.Resume.Page;
 
-namespace ITHell.VacancyParser.Domain.Services.Resume.ResumePageParser;
+namespace ITHell.VacancyParser.Domain.Services.Resume.PageParser;
 
 public interface IResumePageParser
 {

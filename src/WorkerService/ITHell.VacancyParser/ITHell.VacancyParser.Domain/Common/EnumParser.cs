@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Reflection;
+using ITHell.VacancyParser.Domain.Common.Attributes;
 
 namespace ITHell.VacancyParser.Domain.Common;
 

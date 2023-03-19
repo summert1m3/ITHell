@@ -1,12 +1,12 @@
 using AngleSharp.Dom;
 using ITHell.VacancyParser.Domain.Entities.Resume;
-using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage;
-using ITHell.VacancyParser.Domain.Services.Resume.ResumeCardParser;
-using ITHell.VacancyParser.Domain.Services.Resume.ResumePageParser;
-using ITHell.VacancyParser.Domain.Services.Vacancy.VacancyCardParser;
-using ITHell.VacancyParser.Domain.Services.Vacancy.VacancyPageParser;
+using ITHell.VacancyParser.Domain.Entities.Resume.Page;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Card;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Page;
+using ITHell.VacancyParser.Domain.Services.Resume.CardParser;
+using ITHell.VacancyParser.Domain.Services.Resume.PageParser;
+using ITHell.VacancyParser.Domain.Services.Vacancy.CardParser;
+using ITHell.VacancyParser.Domain.Services.Vacancy.PageParser;
 
 namespace ITHell.VacancyParser.Application.Services.Parsers;
 

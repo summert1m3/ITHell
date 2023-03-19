@@ -1,4 +1,4 @@
-namespace ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard.ValueObjects;
+namespace ITHell.VacancyParser.Domain.Entities.Vacancy.Card.ValueObjects;
 
 public class VacancyDescription
 {

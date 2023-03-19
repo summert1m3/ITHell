@@ -1,6 +1,6 @@
 using ITHell.VacancyParser.Domain.Common.Language;
 
-namespace ITHell.VacancyParser.Domain.Entities.Resume.ResumePage.ValueObjects;
+namespace ITHell.VacancyParser.Domain.Entities.Resume.Page.ValueObjects;
 
 public class LanguageKnowledge
 {

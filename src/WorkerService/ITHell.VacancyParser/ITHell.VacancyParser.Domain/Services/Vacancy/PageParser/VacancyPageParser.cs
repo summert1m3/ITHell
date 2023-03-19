@@ -2,11 +2,11 @@ using System.Text.RegularExpressions;
 using AngleSharp.Dom;
 using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Domain.Common;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage.ValueObjects;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Card;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Page;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Page.ValueObjects;
 
-namespace ITHell.VacancyParser.Domain.Services.Vacancy.VacancyPageParser;
+namespace ITHell.VacancyParser.Domain.Services.Vacancy.PageParser;
 
 public class VacancyPageParser : IVacancyPageParser
 {

@@ -1,4 +1,4 @@
-namespace ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyPage.ValueObjects;
+namespace ITHell.VacancyParser.Domain.Entities.Vacancy.Card.ValueObjects;
 
 public class Company
 {
@@ -12,6 +12,4 @@ public class Company
     /// Пример: vacancy-serp-bage-trusted-employer (проверенный работодатель)
     /// </summary>
     public required List<string> Badges { get; init; }
-    
-    public decimal? CompanyRating { get; set; }
 }

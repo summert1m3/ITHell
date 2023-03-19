@@ -1,8 +1,8 @@
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard.ValueObjects;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Card.ValueObjects;
 
-namespace ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
+namespace ITHell.VacancyParser.Domain.Entities.Vacancy.Card;
 
-public class VacancyCard
+public class VacancyCard : BaseEntity
 {
     /// <summary>
     /// Id вакансии из ссылки
@@ -29,4 +29,12 @@ public class VacancyCard
     public required List<string> Labels { get; init; }
 
     public required VacancyDescription? VacancyDescription { get; init; }
+
+    public override string ToString()
+    {
+        return $"{nameof(VacancyId)}: {VacancyId}, {nameof(OnlineUsers)}: {OnlineUsers}, " +
+               $"{nameof(VacancyPageLink)}: {VacancyPageLink}, {nameof(Title)}: {Title}, " +
+               $"{nameof(Salary)}: {Salary}, {nameof(Company)}: {Company}, {nameof(VacancyAddress)}: {VacancyAddress}, " +
+               $"{nameof(Labels)}: {Labels}, {nameof(VacancyDescription)}: {VacancyDescription}";
+    }
 }

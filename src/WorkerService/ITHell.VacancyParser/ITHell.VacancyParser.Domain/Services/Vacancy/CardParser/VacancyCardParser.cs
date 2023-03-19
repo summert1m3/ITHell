@@ -1,10 +1,10 @@
 using System.Text.RegularExpressions;
 using AngleSharp.Dom;
 using Ardalis.GuardClauses;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard;
-using ITHell.VacancyParser.Domain.Entities.Vacancy.VacancyCard.ValueObjects;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Card;
+using ITHell.VacancyParser.Domain.Entities.Vacancy.Card.ValueObjects;
 
-namespace ITHell.VacancyParser.Domain.Services.Vacancy.VacancyCardParser;
+namespace ITHell.VacancyParser.Domain.Services.Vacancy.CardParser;
 
 public class VacancyCardParser : IVacancyCardParser
 {

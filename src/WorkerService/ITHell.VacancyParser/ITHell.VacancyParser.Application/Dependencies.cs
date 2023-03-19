@@ -1,8 +1,8 @@
 using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Application.Services.Clients;
 using ITHell.VacancyParser.Application.Services.Parsers;
-using ITHell.VacancyParser.Domain.Services.Vacancy.VacancyCardParser;
-using ITHell.VacancyParser.Domain.Services.Vacancy.VacancyPageParser;
+using ITHell.VacancyParser.Domain.Services.Vacancy.CardParser;
+using ITHell.VacancyParser.Domain.Services.Vacancy.PageParser;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

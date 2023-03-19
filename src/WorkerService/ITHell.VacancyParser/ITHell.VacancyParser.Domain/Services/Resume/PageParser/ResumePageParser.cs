@@ -2,19 +2,25 @@ using System.Globalization;
 using AngleSharp.Dom;
 using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Domain.Common;
+using ITHell.VacancyParser.Domain.Common.Exceptions;
 using ITHell.VacancyParser.Domain.Common.Language;
 using ITHell.VacancyParser.Domain.Entities.Resume;
-using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
-using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage.ValueObjects;
+using ITHell.VacancyParser.Domain.Entities.Resume.Page;
+using ITHell.VacancyParser.Domain.Entities.Resume.Page.ValueObjects;
 
-namespace ITHell.VacancyParser.Domain.Services.Resume.ResumePageParser;
+namespace ITHell.VacancyParser.Domain.Services.Resume.PageParser;
 
 public class ResumePageParser : IResumePageParser
 {
     public ResumePage ParseResumePageFromDom(IDocument doc, ResumeCard resumeCard)
     {
         var mainContent = doc.QuerySelector("div.main-content div.resume-applicant");
-        Guard.Against.Null(mainContent);
+
+        if (mainContent is null)
+        {
+            throw new ResumePageParseFailedException(
+                $"Не удалось спарсить страницу резюме {resumeCard.ResumePageLink}");
+        }
 
         var header = ParseHeader(mainContent);
 
@@ -335,7 +341,11 @@ public class ResumePageParser : IResumePageParser
         foreach (var tagEl in tagListEl)
         {
             var tag = tagEl.QuerySelector("span")?.TextContent;
-            Guard.Against.NullOrWhiteSpace(tag);
+            //Guard.Against.NullOrWhiteSpace(tag);
+            if (tag is null)
+            {
+                Console.WriteLine();
+            }
 
             tagList.Add(tag);
         }

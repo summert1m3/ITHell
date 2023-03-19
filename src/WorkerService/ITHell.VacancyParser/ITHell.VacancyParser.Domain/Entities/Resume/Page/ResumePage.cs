@@ -1,9 +1,9 @@
 using ITHell.VacancyParser.Domain.Common;
-using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage.ValueObjects;
+using ITHell.VacancyParser.Domain.Entities.Resume.Page.ValueObjects;
 
-namespace ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
+namespace ITHell.VacancyParser.Domain.Entities.Resume.Page;
 
-public record ResumePage
+public class ResumePage : BaseEntity
 {
     /// <summary>
     /// Id резюме из ссылки
@@ -68,4 +68,16 @@ public record ResumePage
     /// Разрешение на работу
     /// </summary>
     public Country? WorkPermit { get; set; }
+
+    public override string ToString()
+    {
+        return $"{nameof(ResumeId)}: {ResumeId}, {nameof(PageLink)}: {PageLink}, " +
+               $"{nameof(EmployeeStatus)}: {EmployeeStatus}, {nameof(Gender)}: {Gender}, {nameof(Age)}: {Age}, " +
+               $"{nameof(BirthDate)}: {BirthDate}, {nameof(HasPicture)}: {HasPicture}, {nameof(Salary)}: {Salary}, " +
+               $"{nameof(Title)}: {Title}, {nameof(Employments)}: {Employments}, {nameof(WorkSchedules)}: {WorkSchedules}, " +
+               $"{nameof(Experience)}: {Experience}, {nameof(AboutMe)}: {AboutMe}, " +
+               $"{nameof(TagList)}: {TagList}, {nameof(Education)}: {Education}, " +
+               $"{nameof(LanguagesKnowledge)}: {LanguagesKnowledge}, {nameof(Citizenship)}: {Citizenship}, " +
+               $"{nameof(WorkPermit)}: {WorkPermit}";
+    }
 }
