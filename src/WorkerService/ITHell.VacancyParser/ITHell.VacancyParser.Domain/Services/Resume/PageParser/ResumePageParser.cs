@@ -370,7 +370,8 @@ public class ResumePageParser : IResumePageParser
             return tagList;
         }
 
-        var tagListEl = tagsEl.QuerySelectorAll("div");
+        var tagListEl 
+            = tagsEl.QuerySelectorAll("div.bloko-tag.bloko-tag_inline.bloko-tag_countable");
 
         foreach (var tagEl in tagListEl)
         {

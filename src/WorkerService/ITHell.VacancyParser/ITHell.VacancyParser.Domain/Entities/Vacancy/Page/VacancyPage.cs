@@ -9,6 +9,10 @@ public class VacancyPage : BaseEntity
     public required string PageLink { get; init; }
     public required Salary Salary { get; init; }
     public required Experience Experience { get; init; }
+    
+    /// <summary>
+    /// График работы
+    /// </summary>
     public required List<string> WorkSchedules { get; init; }
 
     public required Company Company { get; init; }

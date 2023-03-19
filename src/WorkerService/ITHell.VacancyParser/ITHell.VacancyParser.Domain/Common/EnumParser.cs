@@ -30,7 +30,12 @@ public static class EnumParser
             
             if (attribute is not null)
             {
-                if (attribute.Values.Contains(description))
+                "Test".Contains("test", System.StringComparison.CurrentCultureIgnoreCase);
+
+                if (attribute.Values.Any(
+                        attributeValue => 
+                            attributeValue.Contains(
+                                description, StringComparison.CurrentCultureIgnoreCase)))
                 {
                     return value;
                 }
