@@ -42,11 +42,8 @@ public class VacancyCardParser : IVacancyCardParser
             var title = titleEl?.TextContent;
             Guard.Against.Null(title);
 
-            var salary = cardHeader.QuerySelector("span[data-qa=\"vacancy-serp__vacancy-compensation\"]")?.TextContent;
-            if (salary is null)
-            {
-                Console.WriteLine("Зарплата не найдена");
-            }
+            var salary = cardHeader
+                .QuerySelector("span[data-qa=\"vacancy-serp__vacancy-compensation\"]")?.TextContent;
 
             var companyInfo = ParseCompanyInfo(cardHeader);
 
@@ -106,8 +103,6 @@ public class VacancyCardParser : IVacancyCardParser
         }
         else
         {
-            Console.WriteLine("Не найдена ссылка компании");
-            
             companyName = companyMetaInfoElement.TextContent;
             Guard.Against.NullOrWhiteSpace(companyName);
         }
@@ -119,17 +114,11 @@ public class VacancyCardParser : IVacancyCardParser
             var badgesEl = companyInfoEl.QuerySelector("div.vacancy-serp-item__meta-info-badges");
             if (badgesEl is null)
             {
-                Console.WriteLine("Не найдено Badges для вакансии");
-
                 return badges;
             }
 
-            var badgesEls = badgesEl.QuerySelectorAll("div.vacancy-serp-item__meta-info-link");
-
-            if (!badgesEls.Any())
-            {
-                Console.WriteLine("Не найдено Badges для вакансии");
-            }
+            var badgesEls = badgesEl
+                .QuerySelectorAll("div.vacancy-serp-item__meta-info-link");
 
             foreach (var badgeEl in badgesEls)
             {
@@ -169,18 +158,11 @@ public class VacancyCardParser : IVacancyCardParser
         }
 
         var responsibility =
-            vacancyBody.QuerySelector("div[data-qa=\"vacancy-serp__vacancy_snippet_responsibility\"]")?.TextContent;
-        if (responsibility is null)
-        {
-            Console.WriteLine("Ответственности не найдены");
-        }
+            vacancyBody
+                .QuerySelector("div[data-qa=\"vacancy-serp__vacancy_snippet_responsibility\"]")?.TextContent;
 
         var requirements =
             vacancyBody.QuerySelector("div[data-qa=\"vacancy-serp__vacancy_snippet_requirement\"]")?.TextContent;
-        if (requirements is null)
-        {
-            Console.WriteLine("Требования не найдены");
-        }
 
         return new VacancyDescription()
         {
@@ -191,12 +173,9 @@ public class VacancyCardParser : IVacancyCardParser
 
     private List<string> ParseVacancyLabels(IElement vacancyEl)
     {
-        var vacancyLabelsElements = vacancyEl.QuerySelectorAll("div.vacancy-serp-item__label");
-        if (!vacancyLabelsElements.Any())
-        {
-            Console.WriteLine("Не найдено Labels для вакансии");
-        }
-
+        var vacancyLabelsElements = vacancyEl
+            .QuerySelectorAll("div.vacancy-serp-item__label");
+        
         List<string> vacancyLabels = new();
 
         foreach (var labelEl in vacancyLabelsElements)
