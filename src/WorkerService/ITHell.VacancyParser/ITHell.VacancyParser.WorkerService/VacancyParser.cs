@@ -48,64 +48,19 @@ public class VacancyParser : BackgroundService
 
     void DisplayVacancyPage(VacancyPage vacancy)
     {
-        Console.WriteLine($"Vacancy id: {vacancy.VacancyId}");
-        Console.WriteLine($"Vacancy id: {vacancy.PageLink}");
-        Console.WriteLine($"Title: {vacancy.Title}");
-        Console.WriteLine($"SalaryFrom: {vacancy.Salary.SalaryFrom}");
-        Console.WriteLine($"SalaryTo {vacancy.Salary.SalaryTo}");
-        Console.WriteLine($"Currency {vacancy.Salary.SalaryCurrency}");
-        Console.WriteLine($"ExperienceFrom: {vacancy.Experience.ExperienceFrom}");
-        Console.WriteLine($"ExperienceTo: {vacancy.Experience.ExperienceTo}");
+        Console.WriteLine();
 
-        Console.WriteLine("Work schedules:");
-        foreach (var workSchedule in vacancy.WorkSchedules)
-        {
-            Console.WriteLine(workSchedule);
-        }
-
-        Console.WriteLine($"CompanyImgSrc: {vacancy.Company.CompanyLogoLink}");
-        Console.WriteLine($"CompanyName: {vacancy.Company.CompanyName}");
-        Console.WriteLine($"CompanyRating: {vacancy.Company.CompanyRating}");
-        Console.WriteLine($"VacancyLocation: {vacancy.VacancyLocation}");
-        Console.WriteLine($"MainContent: {vacancy.MainContent}");
-
-        Console.WriteLine("Tag list:");
-        foreach (var tag in vacancy.TagList)
-        {
-            Console.WriteLine(tag);
-        }
-
-        Console.WriteLine($"VacancyCreatedDate: {vacancy.VacancyCreatedDate}");
+        Console.WriteLine(vacancy);
+        
+        Console.WriteLine();
     }
 
     private void DisplayVacancyCard(VacancyCard vacancyCard)
     {
-        Console.WriteLine($"Online users: {vacancyCard.OnlineUsers}");
-        Console.WriteLine($"Vacancy page link: {vacancyCard.VacancyPageLink}");
-        Console.WriteLine($"Title: {vacancyCard.Title}");
-        Console.WriteLine($"Salary: {vacancyCard.Salary}");
-        Console.WriteLine($"Company name: {vacancyCard.Company.CompanyName}");
-        Console.WriteLine($"Company link: {vacancyCard.Company.CompanyLink}");
-        Console.WriteLine($"Company logo: {vacancyCard.Company.CompanyLogoLink}");
-        Console.WriteLine($"Company badges");
-
-        foreach (var badge in vacancyCard.Company.Badges)
-        {
-            Console.WriteLine(badge);
-        }
-
-        Console.WriteLine($"Vacancy address: {vacancyCard.VacancyAddress}");
-
-        Console.WriteLine($"Labels");
-        foreach (var label in vacancyCard.Labels)
-        {
-            Console.WriteLine(label);
-        }
-
-        Console.WriteLine($"Responsibilities: {vacancyCard.VacancyDescription?.Responsibilities}");
-        Console.WriteLine($"Requirements: {vacancyCard.VacancyDescription?.Requirements}");
         Console.WriteLine();
-        Console.WriteLine("---------------");
+
+        Console.WriteLine(vacancyCard);
+        
         Console.WriteLine();
     }
 
@@ -136,7 +91,7 @@ public class VacancyParser : BackgroundService
             {
                 DisplayVacancyCard(vacancyCard);
 
-                await Task.Delay(new TimeSpan(0, 0, Random.Shared.Next(10, 20)));
+                await Task.Delay(new TimeSpan(0, 0, Random.Shared.Next(5, 15)));
 
                 var vacancyPageHtml = await _flareSolverrHttpClient.Get(vacancyCard.VacancyPageLink);
 
@@ -163,7 +118,7 @@ public class VacancyParser : BackgroundService
 
             pageLink = _regionalJobSiteLink + nextLink;
 
-            var delay = Random.Shared.Next(15, 45);
+            var delay = Random.Shared.Next(15, 35);
 
             await Task.Delay(new TimeSpan(0, 0, delay));
 

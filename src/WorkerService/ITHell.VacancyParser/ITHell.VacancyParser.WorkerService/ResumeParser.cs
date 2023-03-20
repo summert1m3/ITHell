@@ -4,7 +4,7 @@ using Ardalis.GuardClauses;
 using ITHell.VacancyParser.Application.Services.Clients;
 using ITHell.VacancyParser.Application.Services.Parsers;
 using ITHell.VacancyParser.Domain.Entities.Resume;
-using ITHell.VacancyParser.Domain.Entities.Resume.ResumePage;
+using ITHell.VacancyParser.Domain.Entities.Resume.Page;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace ITHell.VacancyParser.WorkerService;
@@ -44,9 +44,10 @@ public class ResumeParser : BackgroundService
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
-            await ParseResumeCards(_parserStartLink);
-
-            await Task.Delay(new TimeSpan(1, 0, 0, 0), stoppingToken);
+            await StartParse(_parserStartLink);
+            //await Test();
+            
+            //await Task.Delay(new TimeSpan(1, 0, 0, 0), stoppingToken);
         }
     }
 
@@ -71,20 +72,21 @@ public class ResumeParser : BackgroundService
             });
     }
 
-    private async Task ParseResumeCards(string pageLink)
+    private async Task StartParse(string pageLink)
     {
         var pageNumber = 0;
 
         List<ResumeCard> allResumeCards = new();
+        List<ResumePage> allResumePages = new();
+        
+        var config = Configuration.Default.WithDefaultLoader();
+        using var context = BrowsingContext.New(config);
 
         while (true)
         {
             Console.WriteLine($"PAGE {pageNumber}");
 
             var html = await _flareSolverrHttpClient.Get(pageLink);
-
-            var config = Configuration.Default.WithDefaultLoader();
-            using var context = BrowsingContext.New(config);
 
             using var doc = await context.OpenAsync(req => req.Content(html));
             await doc.WaitForReadyAsync();
@@ -97,7 +99,7 @@ public class ResumeParser : BackgroundService
             {
                 DisplayResumeCard(resumeCard);
 
-                await Task.Delay(new TimeSpan(0, 0, Random.Shared.Next(5, 10)));
+                await Task.Delay(new TimeSpan(0, 0, Random.Shared.Next(5, 15)));
 
                 var resumePageHtml = await _flareSolverrHttpClient.Get(resumeCard.ResumePageLink);
 
@@ -107,12 +109,13 @@ public class ResumeParser : BackgroundService
 
                 var resumePage
                     = _htmlParser.ParseResumePage(resumePageDoc, resumeCard);
+                
+                allResumePages.Add(resumePage);
 
                 DisplayResumePage(resumePage);
             }
 
             Console.WriteLine(resumeCards.Count);
-
 
             var nextLink = doc.QuerySelector("div[data-qa=\"pager-block\"] a[data-qa=\"pager-next\"]")?
                 .GetAttribute("href");
@@ -124,14 +127,13 @@ public class ResumeParser : BackgroundService
 
             pageLink = _regionalJobSiteLink + nextLink;
 
-            var delay = Random.Shared.Next(15, 45);
-
-            await Task.Delay(new TimeSpan(0, 0, delay));
+            await Task.Delay(new TimeSpan(0, 0, Random.Shared.Next(15, 30)));
 
             pageNumber++;
         }
 
         Console.WriteLine($"All resume cards: {allResumeCards.Count}");
+        Console.WriteLine($"All resume pages: {allResumePages.Count}");
     }
 
     private static void DisplayResumePage(ResumePage resume)
