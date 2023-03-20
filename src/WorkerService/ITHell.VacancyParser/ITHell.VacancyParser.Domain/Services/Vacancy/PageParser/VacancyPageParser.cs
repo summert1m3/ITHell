@@ -235,10 +235,6 @@ public class VacancyPageParser : IVacancyPageParser
 
         var companyImgSrc = companyEl
             .QuerySelector("img.vacancy-company-logo-image-redesigned")?.GetAttribute("src");
-        if (companyImgSrc is null)
-        {
-            Console.WriteLine("Лого компании не найдено");
-        }
 
         var companyName = companyEl
             .QuerySelector(
@@ -247,11 +243,8 @@ public class VacancyPageParser : IVacancyPageParser
 
         decimal? companyRatingDecimal = null;
         var companyRating = companyEl.QuerySelector("div.AjI0Ncv___rating-container div")?.TextContent;
-        if (companyRating is null)
-        {
-            Console.WriteLine("Оценка компании не найдена");
-        }
-        else
+        
+        if (companyRating is not null)
         {
             companyRatingDecimal = decimal.Parse(companyRating);
         }
@@ -269,11 +262,6 @@ public class VacancyPageParser : IVacancyPageParser
                 = companyEl.QuerySelector("span[data-qa=\"vacancy-view-raw-address\"]");
 
             vacancyLocation = vacancyLocationRaw?.TextContent;
-        }
-
-        if (vacancyLocation is null)
-        {
-            Console.WriteLine("Не найден адрес вакансии");
         }
 
         return (companyImgSrc, companyName, companyRatingDecimal, vacancyLocation);
@@ -300,8 +288,6 @@ public class VacancyPageParser : IVacancyPageParser
 
         if (tagsEl is null)
         {
-            Console.WriteLine("Ключевые навыки не найдены");
-
             return tagList;
         }
 
