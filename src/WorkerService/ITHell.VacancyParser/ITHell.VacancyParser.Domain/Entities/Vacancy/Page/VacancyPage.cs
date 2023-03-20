@@ -1,3 +1,4 @@
+using ITHell.VacancyParser.Domain.Common;
 using ITHell.VacancyParser.Domain.Entities.Vacancy.Page.ValueObjects;
 
 namespace ITHell.VacancyParser.Domain.Entities.Vacancy.Page;
@@ -13,7 +14,7 @@ public class VacancyPage : BaseEntity
     /// <summary>
     /// График работы
     /// </summary>
-    public required List<string> WorkSchedules { get; init; }
+    public required List<WorkSchedule> WorkSchedules { get; init; }
 
     public required Company Company { get; init; }
     
@@ -24,6 +25,11 @@ public class VacancyPage : BaseEntity
     /// Ключевые навыки
     /// </summary>
     public required List<string> TagList { get; init; }
+    
+    /// <summary>
+    /// Знание языков программирования
+    /// </summary>
+    public required List<ProgrammingLanguage> ProgrammingLanguagesKnowledge { get; init; }
 
     public required DateTime VacancyCreatedDate { get; init; }
 
@@ -34,6 +40,7 @@ public class VacancyPage : BaseEntity
                $"{nameof(Experience)}: {Experience}, {nameof(WorkSchedules)}: {WorkSchedules}, " +
                $"{nameof(Company)}: {Company}, {nameof(VacancyLocation)}: {VacancyLocation}, " +
                $"{nameof(MainContent)}: {MainContent}, {nameof(TagList)}: {TagList}, " +
+               $"{nameof(ProgrammingLanguagesKnowledge)}: {ProgrammingLanguagesKnowledge}, " +
                $"{nameof(VacancyCreatedDate)}: {VacancyCreatedDate}";
     }
 }

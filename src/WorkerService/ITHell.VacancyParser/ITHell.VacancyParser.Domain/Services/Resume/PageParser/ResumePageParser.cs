@@ -154,7 +154,7 @@ public class ResumePageParser : IResumePageParser
             }
             catch (Exception e)
             {
-                continue;
+                // ignored
             }
         }
 

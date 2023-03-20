@@ -22,6 +22,8 @@ public class VacancyPageParser : IVacancyPageParser
         var vacancyMainContent = ParseMainContent(mainContent);
 
         var tagList = ParseTagList(mainContent);
+        
+        var progLangKnowlg = GetProgrammingLanguagesKnowledge(tagList);
 
         var vacancyCreatedDate = ParseVacancyCreatedDate(mainContent);
 
@@ -58,14 +60,37 @@ public class VacancyPageParser : IVacancyPageParser
             MainContent = vacancyMainContent,
 
             TagList = tagList,
+            
+            ProgrammingLanguagesKnowledge = progLangKnowlg,
 
             VacancyCreatedDate = vacancyCreatedDate
         };
     }
+    
+    private static List<ProgrammingLanguage> GetProgrammingLanguagesKnowledge(List<string> tags)
+    {
+        List<ProgrammingLanguage> programmingLanguages = new();
+        
+        foreach (var tag in tags)
+        {
+            try
+            {
+                var progLang = EnumParser.ParseEnumMultipleDescription<ProgrammingLanguage>(tag);
+                
+                programmingLanguages.Add(progLang);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
+        return programmingLanguages;
+    }
 
     private static
         (string Title, int? SalaryFrom, int? SalaryTo, Currency? salaryCurrency,
-        int? ExperienceFrom, int? ExperienceTo, List<string> WorkSchedules)
+        int? ExperienceFrom, int? ExperienceTo, List<WorkSchedule> WorkSchedules)
         ParseHeader(IElement main)
     {
         var header = main.QuerySelector("div.wrapper-flat--H4DVL_qLjKLCo1sytcNI");
@@ -168,13 +193,37 @@ public class VacancyPageParser : IVacancyPageParser
                 break;
         }
 
+        var workSchedules = ParseWorkSchedules(header);
+
+        return (title, salaryFrom, salaryTo, salaryCurrency, experienceFrom, experienceTo, workSchedules);
+    }
+
+    private static List<WorkSchedule> ParseWorkSchedules(IElement header)
+    {
         var workSchedulesString = header
             .QuerySelector("p[data-qa=\"vacancy-view-employment-mode\"]")?.TextContent;
         Guard.Against.NullOrWhiteSpace(workSchedulesString);
 
-        var workSchedules = workSchedulesString.Split(',').Select(x => x.Trim()).ToList();
+        var workSchedulesStr = workSchedulesString
+            .Split(',').Select(x => x.Trim()).ToList();
+        
+        List<WorkSchedule> workSchedules = new();
 
-        return (title, salaryFrom, salaryTo, salaryCurrency, experienceFrom, experienceTo, workSchedules);
+        foreach (var workScheduleStr in workSchedulesStr)
+        {
+            try
+            {
+                var parsedWorkSch = EnumParser
+                    .ParseEnumMultipleDescription<WorkSchedule>(workScheduleStr);
+                workSchedules.Add(parsedWorkSch);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
+        return workSchedules;
     }
 
     private static
