@@ -106,21 +106,17 @@ public class VacancyPageParser : IVacancyPageParser
         int? salaryTo = null;
 
         Currency? salaryCurrency = null;
+        
+        //Зарплата в интервале
+        var salaryInterval = header
+                              .QuerySelector("span[data-qa=\"vacancy-salary-compensation-type-net\"]")
+                              ?.TextContent
+                          ??
+                          header.QuerySelector(
+                              "span[data-qa=\"vacancy-salary-compensation-type-gross\"]")?.TextContent;
 
-        var emptySalary = header
-            .QuerySelector("span[data-qa=\"vacancy-salary-compensation-type-undefined\"]")?.TextContent;
-
-        if (emptySalary is null)
+        if (salaryInterval is not null)
         {
-            //Зарплата в интервале
-            var salaryInterval = header
-                                     .QuerySelector("span[data-qa=\"vacancy-salary-compensation-type-net\"]")
-                                     ?.TextContent
-                                 ??
-                                 header.QuerySelector(
-                                     "span[data-qa=\"vacancy-salary-compensation-type-gross\"]")?.TextContent;
-            Guard.Against.Null(salaryInterval);
-
             var salaryIntervalNoWhiteSpaces = salaryInterval
                 .Replace('\u00A0', ' ').Replace(" ", "");
 
@@ -147,19 +143,19 @@ public class VacancyPageParser : IVacancyPageParser
                     break;
             }
 
-            if (salaryIntervalNoWhiteSpaces.Contains("руб."))
+            if (salaryIntervalNoWhiteSpaces.Contains("руб.") || salaryIntervalNoWhiteSpaces.Contains('₽'))
             {
                 salaryCurrency = Currency.RUB;
             }
-            else if (salaryIntervalNoWhiteSpaces.Contains("USD"))
+            else if (salaryIntervalNoWhiteSpaces.Contains("USD") || salaryIntervalNoWhiteSpaces.Contains('$'))
             {
                 salaryCurrency = Currency.USD;
             }
-            else if (salaryIntervalNoWhiteSpaces.Contains("EUR"))
+            else if (salaryIntervalNoWhiteSpaces.Contains("EUR") || salaryIntervalNoWhiteSpaces.Contains('€'))
             {
                 salaryCurrency = Currency.EUR;
             }
-            else if(salaryIntervalNoWhiteSpaces.Contains("KZT"))
+            else if(salaryIntervalNoWhiteSpaces.Contains("KZT") || salaryIntervalNoWhiteSpaces.Contains('₸'))
             {
                 salaryCurrency = Currency.KZT;
             }

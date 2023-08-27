@@ -18,8 +18,8 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddDomain(configuration);
         services.AddApplication(configuration);
 
-        //services.AddHostedService<VacancyParser>();
-        services.AddHostedService<ResumeParser>();
+        services.AddHostedService<VacancyParser>();
+        //services.AddHostedService<ResumeParser>();
 
         var flareSolverrUrl = configuration["FlareSolverrUrl"];
         Guard.Against.NullOrWhiteSpace(flareSolverrUrl);
