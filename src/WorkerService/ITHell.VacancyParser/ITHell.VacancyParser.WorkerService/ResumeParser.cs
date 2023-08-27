@@ -45,18 +45,15 @@ public class ResumeParser : BackgroundService
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
             await StartParse(_parserStartLink);
-            //await Test();
-            
-            //await Task.Delay(new TimeSpan(1, 0, 0, 0), stoppingToken);
         }
     }
 
-    private async Task Test()
+    private async Task ParseFromFile()
     {
         var config = Configuration.Default.WithDefaultLoader();
         using var context = BrowsingContext.New(config);
 
-        var resumePageHtml = File.ReadAllText("");
+        var resumePageHtml = await File.ReadAllTextAsync("");
             
         using var resumePageDoc
             = await context.OpenAsync(req => req.Content(resumePageHtml));

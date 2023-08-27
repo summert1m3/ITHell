@@ -19,12 +19,8 @@ public static class Dependencies
             provider => new VacancyCardParser(jobSiteLink));
 
         services.AddSingleton<IVacancyPageParser, VacancyPageParser>();
-
-        var flareSolverrUrl = configuration["FlareSolverrUrl"];
-        Guard.Against.NullOrWhiteSpace(flareSolverrUrl);
         
-        services.AddSingleton<IFlareSolverrHttpClient>(
-            provider => new FlareSolverrHttpClient(flareSolverrUrl));
+        services.AddSingleton<IFlareSolverrHttpClient, FlareSolverrHttpClient>();
         
         services.AddSingleton<IHtmlParser, DefaultHtmlParser>();
     }

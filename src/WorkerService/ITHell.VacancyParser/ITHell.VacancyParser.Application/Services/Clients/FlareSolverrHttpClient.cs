@@ -4,22 +4,16 @@ namespace ITHell.VacancyParser.Application.Services.Clients;
 
 public class FlareSolverrHttpClient : IFlareSolverrHttpClient
 {
-    private readonly string _flareSolverrUrl;
+    private readonly HttpClient _httpClient;
 
-    public FlareSolverrHttpClient(string flareSolverrUrl)
+    public FlareSolverrHttpClient(HttpClient httpClient)
     {
-        _flareSolverrUrl = flareSolverrUrl;
+        _httpClient = httpClient;
     }
 
     public async Task<string> Get(string pageLink)
     {
-        var handler = new ClearanceHandler(_flareSolverrUrl)
-        {
-            MaxTimeout = 60000
-        };
-
-        var client = new HttpClient(handler);
-        var content = await client.GetStringAsync(pageLink);
+        var content = await _httpClient.GetStringAsync(pageLink);
 
         return content;
     }
