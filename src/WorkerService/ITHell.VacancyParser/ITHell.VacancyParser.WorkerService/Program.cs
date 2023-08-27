@@ -8,6 +8,11 @@ using ITHell.VacancyParser.WorkerService;
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
+        services.Configure<HostOptions>(hostOptions =>
+        {
+            hostOptions.BackgroundServiceExceptionBehavior = BackgroundServiceExceptionBehavior.StopHost;
+        });
+        
         var configuration = hostContext.Configuration;
 
         services.AddDomain(configuration);

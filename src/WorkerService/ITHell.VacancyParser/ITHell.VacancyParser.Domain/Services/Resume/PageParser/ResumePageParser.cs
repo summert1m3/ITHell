@@ -210,19 +210,19 @@ public class ResumePageParser : IResumePageParser
             int estimatedSalary = int.Parse(new string(salaryStr.Where(char.IsDigit).ToArray()));
             Currency? salaryCurrency = null;
 
-            if (salaryStr.Contains("руб."))
+            if (salaryStr.Contains("руб.") || salaryStr.Contains('₽'))
             {
                 salaryCurrency = Currency.RUB;
             }
-            else if (salaryStr.Contains("USD"))
+            else if (salaryStr.Contains("USD") || salaryStr.Contains('$'))
             {
                 salaryCurrency = Currency.USD;
             }
-            else if (salaryStr.Contains("EUR"))
+            else if (salaryStr.Contains("EUR") || salaryStr.Contains('€'))
             {
                 salaryCurrency = Currency.EUR;
             }
-            else if (salaryStr.Contains("KZT"))
+            else if (salaryStr.Contains("KZT") || salaryStr.Contains('₸'))
             {
                 salaryCurrency = Currency.KZT;
             }
@@ -294,7 +294,7 @@ public class ResumePageParser : IResumePageParser
     {
         var languagesEl = mainContent
             .QuerySelectorAll(
-                "div[data-qa=\"resume-block-languages\"] div.bloko-tag-list div");
+                "div[data-qa=\"resume-block-languages\"] div.bloko-tag-list > div");
 
         List<LanguageKnowledge> languagesKnowledge = new();
 
